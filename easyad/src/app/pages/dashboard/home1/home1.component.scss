@@ -1,0 +1,185 @@
+/* ===== GLOBAL RESET & BASE ===== */
+body {
+  background-color: #ffffff;
+  color: #212121;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #0d47a1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0b3c91;
+  text-decoration: underline;
+}
+
+/* ===== HEADER / NAVBAR ===== */
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-nav .nav-link {
+  color: #0d47a1;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #0b3c91;
+}
+
+/* ===== CARD STYLING ===== */
+.card,
+.card-light {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background-color: #0d47a1;
+  border-color: #0d47a1;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b3c91;
+  border-color: #0b3c91;
+}
+
+/* ===== ICONS & INTERACTIVE ELEMENTS ===== */
+.text-primary {
+  color: #0d47a1 !important;
+}
+
+.text-secondary {
+  color: #5f6368 !important;
+}
+
+.dropdown-menu {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+}
+
+.dropdown-item {
+  color: #333333;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f3f4;
+  color: #0d47a1;
+}
+
+/* ===== SECTION SPACING ===== */
+.section-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #111111;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+.card-subtitle {
+  font-size: 0.95rem;
+  color: #5f6368;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  color: #6c757d;
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ===== SPINNER / LOADER ===== */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: #0d47a1;
+}
+
+/* ===== BADGES, TAGS, LABELS ===== */
+.badge-custom {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-weight: 500;
+  padding: 0.35em 0.75em;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* ===== CAR SEARCH RESULTS EXAMPLE ===== */
+.vehicle-card {
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vehicle-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.vehicle-title {
+  color: #212121;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.vehicle-price {
+  color: #0d47a1;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* ===== MEDIA QUERIES (light touch) ===== */
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+}

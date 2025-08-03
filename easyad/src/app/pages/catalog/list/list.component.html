@@ -1,0 +1,153 @@
+<app-header id="top"></app-header>
+
+<div class="container mt-5 mb-md-4 py-5">
+  <div class="row py-md-1">
+    <!-- Filters sidebar -->
+    <div class="col-lg-3 pe-xl-4">
+      <div class="offcanvas offcanvas-start offcanvas-collapse bg-light" id="filters-sidebar">
+        <div class="offcanvas-header bg-transparent d-flex d-lg-none align-items-center">
+          <h2 class="h5 text-primary mb-0">Filters</h2>
+          <button class="btn-close btn-close-white" type="button" (click)="SidebarHide()"></button>
+        </div>
+        <div class="offcanvas-body py-lg-4">
+          <!-- Filtres -->
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h3 class="h6 text-primary mb-0">Filtres</h3>
+            <button class="btn btn-link btn-primary fw-normal fs-sm p-0" (click)="resetFilters()">Clear all</button>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <label class="text-primary">Location</label>
+            <select class="form-select form-select-primary" [(ngModel)]="filters.location">
+              <option value="">Any</option>
+              <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+            </select>
+          </div>
+
+          <!-- Make -->
+          <div class="mb-3">
+            <label class="text-primary">Make</label>
+            <select class="form-select form-select-primary" [(ngModel)]="filters.make">
+              <option value="">Any make</option>
+              <option *ngFor="let make of availableMakes" [value]="make">{{ make }}</option>
+            </select>
+          </div>
+
+          <!-- Fuel Type -->
+          <div class="mb-3">
+            <label class="text-primary">Fuel Type</label>
+            <div class="form-check form-check-primary" *ngFor="let fuel of fuelTypes">
+              <input type="checkbox" class="form-check-input" [value]="fuel" (change)="onCheckboxChange($event, 'fuelType')">
+              <label class="form-check-label fs-sm">{{ fuel }}</label>
+            </div>
+          </div>
+
+          <!-- Year -->
+          <div class="mb-3 d-flex">
+            <select class="form-select form-select-primary" [(ngModel)]="filters.minYear">
+              <option value="">From</option>
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+            <div class="mx-2">&mdash;</div>
+            <select class="form-select form-select-primary" [(ngModel)]="filters.maxYear">
+              <option value="">To</option>
+              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+          </div>
+
+          <!-- Price Range -->
+          <div class="mb-3">
+            <label class="text-primary">Price</label>
+            <ngx-slider [(value)]="filters.minPrice" [(highValue)]="filters.maxPrice" [options]="options"></ngx-slider>
+          </div>
+
+          <!-- Apply Filters -->
+          <div class="mt-4">
+            <button class="btn btn-outline-primary w-100" (click)="applyFilters()">Apply Filters</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="col-lg-9">
+      <app-breadcrumbs [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+
+      <div class="d-flex align-items-center justify-content-between pb-4 mb-2">
+        <h1 class="text-primary me-3 mb-0">Used cars</h1>
+        <div class="text-primary"><i class="fi-car fs-lg me-2"></i>{{ dataCount }} offers</div>
+      </div>
+
+      <!-- Vehicles list -->
+      <ng-container *ngFor="let data of listDatas | sortBy:sortBy:sortField; index as i">
+        <div class="card card-primary card-hover card-horizontal mb-4">
+          <div class="tns-carousel-wrapper card-img-top card-img-hover">
+            <a class="img-overlay" [routerLink]="['/catalog/single', data.adNumber]"><img src="https://picsum.photos/200/300" alt="Image"></a>
+            <div class="position-absolute start-0 top-0 pt-3 ps-3">
+              <span class="d-table badge bg-info mb-1">{{ data.condition }}</span>
+              <span *ngIf="data.certified" class="d-table badge bg-success">Certified</span>
+            </div>
+            <ngx-slick-carousel class="carousel" [config]="config">
+              <div ngxSlickItem *ngFor="let img of data.images">
+                <div class="bg-size-cover bg-position-center card-img-size" [style.background-image]="'url(' + img + ')'">
+                </div>
+              </div>
+            </ngx-slick-carousel>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between pb-1">
+              <span class="fs-sm text-primary me-3">{{ data.year }}</span>
+              <div class="form-check form-check-primary">
+                <input class="form-check-input" type="checkbox" [id]="'compare' + i">
+                <label class="form-check-label fs-sm" [for]="'compare' + i">Compare</label>
+              </div>
+            </div>
+            <h3 class="h6 mb-1">
+              <a class="nav-link-primary" [routerLink]="['/catalog/single', data.adNumber]">{{ data.title }}</a>
+            </h3>
+            <div class="text-primary fw-bold mb-1">${{ data.price }}</div>
+            <div class="fs-sm text-primary opacity-70"><i class="fi-map-pin me-1"></i>{{ data.location }}</div>
+            <div class="border-top border-primary mt-3 pt-3">
+              <div class="row g-2">
+                <div class="col me-sm-1">
+                  <div class="bg-light rounded text-center w-100 h-100 p-2">
+                    <i class="fi-dashboard d-block h4 text-primary mb-0 mx-center"></i>
+                    <span class="fs-xs text-primary">{{ data.mileage }}</span>
+                  </div>
+                </div>
+                <div class="col me-sm-1">
+                  <div class="bg-light rounded text-center w-100 h-100 p-2">
+                    <i class="fi-gearbox d-block h4 text-primary mb-0 mx-center"></i>
+                    <span class="fs-xs text-primary">{{ data.engine }}</span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="bg-light rounded text-center w-100 h-100 p-2">
+                    <i class="fi-petrol d-block h4 text-primary mb-0 mx-center"></i>
+                    <span class="fs-xs text-primary">{{ data.fuelType }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Pagination (placeholder) -->
+      <div class="d-flex align-items-center justify-content-between py-2">
+        <div class="text-primary">Pagination here</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<!-- Filter Button (Mobile) -->
+<button class="btn btn-primary btn-sm w-100 rounded-0 fixed-bottom d-lg-none" type="button" (click)="FilterSidebar()">
+  <i class="fi-filter me-2"></i>Filters
+</button>
+
+<!-- Overlay -->
+<div class="vertical-overlay" (click)="SidebarHide()"></div>

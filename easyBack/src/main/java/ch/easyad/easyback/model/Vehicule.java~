@@ -1,0 +1,4 @@
+package ch.easyad.easyback.model;
+
+public class Vehicule {
+}

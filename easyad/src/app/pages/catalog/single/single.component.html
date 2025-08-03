@@ -1,0 +1,252 @@
+<!-- Header-->
+<app-header id="top"></app-header>
+
+<!-- Page content-->
+<div class="container mt-5 mb-md-4 py-5">
+  <!-- Breadcrumb-->
+  <app-breadcrumbs [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+  <!-- Title + Sharing-->
+  <div class="d-sm-flex align-items-end align-items-md-center justify-content-between position-relative mb-4" style="z-index: 1025;">
+    <div class="me-3">
+      <h1 class="h2 text-light mb-md-0">{{vehicule.title}}</h1>
+      <div class="d-md-none">
+        <div class="d-flex align-items-center mb-3">
+          <div class="h3 mb-0 text-light">{{vehicule.price}}</div>
+          <div class="text-nowrap ps-3"><span class="badge bg-info fs-base me-2">{{vehicule.condition}}</span><span class="badge bg-success fs-base me-2" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true" data-bs-content="&lt;div class=&quot;d-flex&quot;&gt;&lt;i class=&quot;fi-award mt-1 me-2&quot;&gt;&lt;/i&gt;&lt;div&gt;This car is checked and&lt;br&gt;certified by Finder.&lt;/div&gt;&lt;/div&gt;">Certified</span>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center text-light mb-2">
+          <div class="text-nowrap border-end border-light pe-3 me-3"><i class="fi-dashboard fs-lg opacity-70 me-2"></i><span class="align-middle">25K miles</span></div>
+          <div class="text-nowrap"><i class="fi-map-pin fs-lg opacity-70 me-2"></i><span class="align-middle">{{vehicule.location}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="text-nowrap pt-3 pt-sm-0">
+      <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle mb-sm-2" type="button" placement="top" ngbTooltip="Add to Wishlist"><i class="fi-heart"></i></button>
+      <div class="dropdown d-inline-block" placement="top" ngbTooltip="Share">
+        <button class="btn btn-icon btn-translucent-light btn-xs rounded-circle ms-2 mb-sm-2" type="button" data-bs-toggle="dropdown"><i class="fi-share"></i></button>
+        <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end my-1">
+          <button class="dropdown-item" type="button"><i class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>
+          <button class="dropdown-item" type="button"><i class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>
+          <button class="dropdown-item" type="button"><i class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <!-- Gallery-->
+      <div class="tns-carousel-wrapper">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="config">
+          @for(data of apartmentsData;track $index){
+          <div class="" ngxSlickItem>
+            <div><img class="rounded-3" src="{{data.image}}" alt="Image"></div>
+          </div>
+          }
+          <div>
+            <div class="ratio ratio-16x9">
+              <iframe class="rounded-3" src="{{vehicule.videoUrl}}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+      <!-- Specs-->
+      <div class="py-3 mb-3">
+        <h2 class="h4 text-light mb-4">Specifications</h2>
+        <div class="row text-light">
+          <div class="col-sm-6 col-md-12 col-lg-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><strong>Manufacturing Year:</strong><span class="opacity-70 ms-1">{{vehicule.year}}</span></li>
+              <li class="mb-2"><strong>Mileage:</strong><span class="opacity-70 ms-1">{{vehicule.mileage}}</span></li>
+              <li class="mb-2"><strong>Body Type:</strong><span class="opacity-70 ms-1">{{vehicule.bodyType}}</span></li>
+              <li class="mb-2"><strong>Drivetrain:</strong><span class="opacity-70 ms-1">{{vehicule.drivetrain}}</span></li>
+              <li class="mb-2"><strong>Engine:</strong><span class="opacity-70 ms-1">{{vehicule.engine}}</span></li>
+              <li class="mb-2"><strong>Transmission:</strong><span class="opacity-70 ms-1">{{vehicule.transmission}}</span></li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-md-12 col-lg-6">
+            <ul class="list-unstyled">
+              <li class="mb-2"><strong>Fuel Type:</strong><span class="opacity-70 ms-1">{{vehicule.fuelType}}</span></li>
+              <li class="mb-2"><strong>City MPG:</strong><span class="opacity-70 ms-1">{{vehicule.cityMpg}}</span><i class='fi-alert-circle fs-sm text-primary ms-2' placement="top" ngbTooltip="Vrified by seller"></i>
+              </li>
+              <li class="mb-2"><strong>Highway MPG:</strong><span class="opacity-70 ms-1">{{vehicule.highwayMpg}}</span><i class='fi-alert-circle fs-sm text-primary ms-2' placement="top" ngbTooltip="Vrified by seller"></i>
+              </li>
+              <li class="mb-2"><strong>Exterior Color:</strong><span class="opacity-70 ms-1">{{vehicule.exteriorColor}} White</span></li>
+              <li class="mb-2"><strong>Interior Color:</strong><span class="opacity-70 ms-1">{{vehicule.interiorColor}}</span></li>
+              <li class="mb-2"><strong>VIN:</strong><span class="opacity-70 ms-1">{{vehicule.vin}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card with icon boxes-->
+      <div class="card card-body p-4 card-light mb-4">
+        <div class="row row-cols-2 row-cols-sm-4 gx-3 gx-xl-4 gy-4">
+          <div class="col text-light text-center">
+            <div class="d-table bg-dark rounded-3 mx-auto p-3"><img src="assets/img/car-finder/icons/check.svg" width="48" alt="Icon"></div>
+            <div class="fs-sm pt-2 mt-1">Checked and Certified by Finder</div>
+          </div>
+          <div class="col text-light text-center">
+            <div class="d-table bg-dark rounded-3 mx-auto p-3"><img src="assets/img/car-finder/icons/steering-wheel.svg" width="48" alt="Icon"></div>
+            <div class="fs-sm pt-2 mt-1">Single Owner</div>
+          </div>
+          <div class="col text-light text-center">
+            <div class="d-table bg-dark rounded-3 mx-auto p-3"><img src="assets/img/car-finder/icons/driving-test.svg" width="48" alt="Icon"></div>
+            <div class="fs-sm pt-2 mt-1">Well-Equipped</div>
+          </div>
+          <div class="col text-light text-center">
+            <div class="d-table bg-dark rounded-3 mx-auto p-3"><img src="assets/img/car-finder/icons/accident.svg" width="48" alt="Icon"></div>
+            <div class="fs-sm pt-2 mt-1">No Accident / Damage Reported</div>
+          </div>
+        </div>
+      </div>
+<!-- Features -->
+<h2 class="h4 text-light pt-3 mb-4">Features</h2>
+<div class="accordion-light">
+  <div ngbAccordion class="rounded" [closeOthers]="true">
+
+    <!-- Section dynamique pour chaque catégorie -->
+    <div *ngFor="let category of ['exterior', 'interior', 'safety', 'technology']; let i = index" ngbAccordionItem [id]="'feature-' + i">
+      <h2 ngbAccordionHeader class="accordion-header">
+        <button ngbAccordionButton>{{ category | titlecase }}</button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <div class="accordion-body fs-sm text-light opacity-70 p-0">
+            <div *ngIf="vehicule.features[category] && vehicule.features[category].length > 0">
+              <div class="row">
+                <div *ngFor="let column of splitListCached(category, 3); trackBy: trackByIndex" class="col-sm-4">
+                  <ul>
+                    <li *ngFor="let item of column">{{ item }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <p *ngIf="!vehicule.features[category]?.length">No features listed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+      <!-- Description-->
+      <div class="pb-4 mb-3">
+        <h2 class="h4 text-light pt-4 mt-3">Seller's Description</h2>
+        <p class="text-light opacity-70 mb-1">{{vehicule.description}}</p>
+        <div class="collapse" id="seeMoreDescription" #firstcollapse="ngbCollapse" [(ngbCollapse)]="firstColleaps">
+          <p class="text-light opacity-70 mb-1">Asperiores eos molestias, aspernatur assumenda vel corporis ex, magni
+            excepturi totam exercitationem quia inventore quod amet labore impedit quae distinctio? Officiis blanditiis
+            consequatur alias, atque, sed est incidunt accusamus repudiandae tempora repellendus obcaecati delectus
+            ducimus inventore tempore harum numquam autem eligendi culpa.</p>
+        </div><a class="collapse-label collapsed" href="javascript:void(0);" (click)="firstcollapse.toggle()" [attr.aria-expanded]="!firstColleaps" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreDescription"></a>
+      </div>
+      <!-- Post meta-->
+      <div class="d-flex flex-wrap border-top border-light fs-sm text-light pt-4 pb-5 pb-md-2">
+        <div class="border-end border-light pe-3 me-3"><span class="opacity-70">Published: <strong>{{vehicule.publishedDate}}</strong></span></div>
+        <div class="border-end border-light pe-3 me-3"><span class="opacity-70">Ad number:
+            <strong>{{vehicule.adNumber}}</strong></span></div>
+        <div class="opacity-70">Views: <strong>{{vehicule.views}}</strong></div>
+      </div>
+    </div>
+    <!-- Sidebar-->
+    <div class="col-md-5 pt-5 pt-md-0" style="margin-top: -6rem;">
+      <div class="sticky-top pt-5">
+        <div class="d-none d-md-block pt-5">
+          <div class="d-flex mb-4"><span class="badge bg-info fs-base me-2">Used</span><span class="badge bg-success fs-base me-2" placement="top" ngbPopover="This car is checked and certified by Finder." data-bs-toggle="popover">Certified</span></div>
+          <div class="h3 text-light">$31,900</div>
+          <div class="d-flex align-items-center text-light pb-4 mb-2">
+            <div class="text-nowrap border-end border-light pe-3 me-3"><i class="fi-dashboard fs-lg opacity-70 me-2"></i><span class="align-middle">25K miles</span></div>
+            <div class="text-nowrap"><i class="fi-map-pin fs-lg opacity-70 me-2"></i><span class="align-middle">Chicago,
+                IL 60603</span></div>
+          </div>
+        </div>
+        <div class="card card-light card-body mb-4">
+          <div class="text-light mb-2">Private Seller</div><a class="d-flex align-items-center text-decoration-none mb-3" routerLink="/vendor/vendor"><img class="rounded-circle" src="assets/img/avatars/33.jpg" width="48" alt="Devon Lane">
+            <div class="ps-2">
+              <h5 class="text-light mb-0">Devon Lane</h5><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i><i class="star-rating-icon fi-star-filled active"></i></span><span class="fs-sm text-light opacity-70 align-middle ms-1">(5 reviews)</span>
+            </div>
+          </a><a class="text-light" routerLink="/vendor/vendor">Other ads by this seller</a>
+          <div class="pt-4 mt-2">
+            <button class="btn btn-outline-light btn-lg px-4 mb-3" type="button"><i class="fi-phone me-2"></i>(316) ***
+              **** – reveal</button><br><a class="btn btn-primary btn-lg" href="javascript:void(0);" (click)="msgcollapse.toggle()" [attr.aria-expanded]="!msgColleaps" data-bs-toggle="collapse"><i class="fi-chat-left me-2"></i>Send message</a>
+            <div class="collapse" id="send-mail" #msgcollapse="ngbCollapse" [(ngbCollapse)]="msgColleaps">
+              <form class="needs-validation pt-4" novalidate (ngSubmit)="validSubmit()" [formGroup]="validationform">
+                <div class="mb-3">
+                  <textarea class="form-control form-control-light" rows="5" placeholder="Write your message" required formControlName="message" [ngClass]="{'is-invalid': submit && form['message'].errors}"></textarea>
+                  <div class="invalid-feedback">Please enter you message.</div>
+                </div>
+                <button class="btn btn-outline-primary" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card card-body bg-transparent border-light">
+          <h5 class="text-light">Email me price drops and new listings for these search results:</h5>
+          <form class="form-group form-group-light mb-3">
+            <div class="input-group"><span class="input-group-text"> <i class="fi-mail"></i></span>
+              <input class="form-control" type="email" placeholder="Your email" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+          </form>
+          <div class="form-check form-check-light">
+            <input class="form-check-input" type="checkbox" id="subscription-agree">
+            <label class="form-check-label fs-sm opacity-70" for="subscription-agree">I agree to receive price drop
+              alerts on this vehicle and helpful shopping information.</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Related posts (Carousel)-->
+  <h2 class="h3 text-light pt-5 pb-3 mt-md-4">You may be interested in</h2>
+  <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-carousel-light">
+    <ngx-slick-carousel [config]="LatestCar" class="slickSwiper">
+      @for(data of latestCarData;track $index){
+      <div class="swiper-slide me-3" ngxSlickItem>
+        <div class="">
+          <div class="card card-light card-hover h-100">
+            <div class="card-img-top card-img-hover"><a class="img-overlay" routerLink="/catalog/single"></a>
+              <div class="position-absolute start-0 top-0 pt-3 ps-3"><span class="d-table badge bg-info mb-1">{{data.verified_btn}}</span><span class="d-table badge {{data.btn_color}}" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="hover" data-bs-html="true">{{data.btn}}</span></div>
+              <div class="content-overlay end-0 top-0 pt-3 pe-3">
+                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button" placement="left" ngbTooltip="Add to Wishlist"><i class="fi-heart"></i></button>
+              </div><img src="{{data.image}}" alt="Image">
+            </div>
+            <div class="card-body">
+              <div class="d-flex align-items-center justify-content-between pb-1"><span class="fs-sm text-light me-3">{{data.year}}</span>
+                <div class="form-check form-check-light">
+                  <input class="form-check-input" type="checkbox" id="compare4">
+                  <label class="form-check-label fs-sm" for="compare4">Compare</label>
+                </div>
+              </div>
+              <h3 class="h6 mb-1"><a class="nav-link-light" routerLink="/catalog/single">{{data.title}}</a></h3>
+              <div class="text-primary fw-bold mb-1">{{data.price}}</div>
+              <div class="fs-sm text-light opacity-70"><i class="fi-map-pin me-1"></i>{{data.country}}</div>
+            </div>
+            <div class="card-footer border-0 pt-0">
+              <div class="border-top border-light pt-3">
+                <div class="row g-2">
+                  <div class="col me-sm-1">
+                    <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-dashboard d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">{{data.avg}}K mi</span></div>
+                  </div>
+                  <div class="col me-sm-1">
+                    <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-gearbox d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">{{data.eng}}</span></div>
+                  </div>
+                  <div class="col">
+                    <div class="bg-dark rounded text-center w-100 h-100 p-2"><i class="fi-petrol d-block h4 text-light mb-0 mx-center"></i><span class="fs-xs text-light">{{data.fuel}}</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </ngx-slick-carousel>
+  </div>
+</div>
+
+<!-- Footer-->
+<app-footer></app-footer>

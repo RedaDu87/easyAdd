@@ -1,0 +1,273 @@
+<main class="page-wrapper">
+  <!-- Header-->
+  <app-header id="top"></app-header>
+
+  <div class="container mt-5 mb-md-4 pt-5">
+    <!-- Title + Breadcrumb-->
+    <app-breadcrumbs [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+  </div>
+
+  <!-- Page header-->
+  <section class="container mb-5 pb-lg-5">
+    <div class="row align-items-center justify-content-lg-start justify-content-center flex-lg-nowrap gy-4">
+      <div class="col-lg-9"><img class="rounded-3" src="assets/img/car-finder/about/hero-img.jpg" alt="Hero image">
+      </div>
+      <div class="col-lg-4 ms-lg-n5 col-sm-9 text-lg-start text-center">
+        <div class="ms-lg-n5 pe-xl-5">
+          <h1 class="mb-lg-4 text-light">About us</h1>
+          <p class="mb-4 pb-lg-3 fs-lg text-light opacity-70">We believe that car buying and selling should be
+            straight-forward and enjoyable, not time-consuming, complicated or stressful.</p><a class="btn btn-lg btn-primary w-sm-auto w-100" routerLink="/catalog/list"><i class="fi-search me-2"></i>Search car</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features-->
+  <section class="container mb-5 pb-lg-5">
+    <h2 class="mb-4 pb-2 text-light text-center">We are new and growing fast</h2>
+    <!-- Features carousel-->
+    <div class="tns-carousel-wrapper tns-nav-outside tns-carousel-light">
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-4 mx-0 py-3">
+        <!-- Feature item-->
+        @for(data of growingData;track $index){
+        <div class="col">
+          <div class="card card-light card-hover h-100">
+            <div class="card-body icon-box text-center">
+              <div class="icon-box-media bg-dark text-light mx-auto mb-3 d-inline-flex align-items-center justify-content-center" style="width: 4.5rem; height: 4.5rem;"><img src="{{data.image}}" alt="Car icon"></div>
+              <h4 class="card-title">{{data.title}}</h4>
+              <p class="card-text fs-sm opacity-70">{{data.content}}</p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Story steps-->
+  <section class="container mb-5 pb-lg-5 pb-3 pb-sm-4">
+    <h2 class="mb-4 pb-2 text-light text-center">Our story</h2>
+    <div class="mx-auto" style="max-width: 864px;">
+      <div class="steps steps-light steps-vertical">
+        @for(data of storyData;track $index){
+        <div class="step">
+          <div class="step-progress"><span class="step-progress-end"></span><span class="step-number bg-primary shadow-hover">{{data.id}}</span></div>
+          <div class="step-label">
+            <h3 class="h5 mb-2 pb-1 text-light">{{data.year}}</h3>
+            <p class="mb-0">{{data.content}}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Personalized search-->
+  <section class="container mb-5 pb-lg-5 pb-2 pb-sm-3">
+    <div class="row gy-4 align-items-lg-center">
+      <div class="col-md-6"><img class="rounded-3" src="assets/img/car-finder/about/01.jpg" alt="Personalized search">
+      </div>
+      <div class="col-lg-5 offset-lg-1 col-md-6 text-md-start text-center">
+        <h2 class="mb-md-4 text-light">Personalized search</h2>
+        <p class="mb-4 pb-md-3 text-light opacity-70">Ante senectus sed at lacus. Sed pellentesque dapibus nunc, cursus
+          hendrerit at faucibus ornare lectus. Sed vitae congue mauris consectetur. Cursus tristique et porta eget
+          sapien vivamus turpis. Ultrices vitae eget mattis varius ipsum adipiscing id. Neque, sagittis cursus aliquam
+          volutpat tristique viverra amet amet.</p><a class="btn btn-primary w-sm-auto w-100" routerLink="/catalog/grid"><i class="fi-search me-2"></i>Search car</a>
+      </div>
+    </div>
+  </section>
+  <!-- Attractive selling conditions-->
+  <section class="container mb-5 pb-lg-5 pb-2 pb-sm-3">
+    <div class="row gy-4 align-items-lg-center">
+      <div class="col-lg-5 col-md-6 order-md-1 order-2 text-md-start text-center">
+        <h2 class="mb-md-4 text-light">Attractive selling conditions</h2>
+        <p class="mb-4 pb-md-3 text-light opacity-70">In risus quam diam urna, pretium at. Platea nulla malesuada elit,
+          enim lacus quam. Rhoncus, tincidunt mauris quis fames in. A egestas sem quisque urna et imperdiet. Blandit
+          dolor diam urna amet semper elementum ipsum et. Nulla mi ipsum quis et id tempor amet.</p><a class="btn btn-primary w-sm-auto w-100" routerLink="/vendor/sell-car"><i class="fi-plus me-2"></i>Sell car</a>
+      </div>
+      <div class="col-md-6 offset-lg-1 order-md-2 order-1"><img class="rounded-3" src="assets/img/car-finder/about/02.jpg" alt="Attractive selling conditions"></div>
+    </div>
+  </section>
+
+  <!-- Our partners (carousel)-->
+  <section class="container mb-5 pb-lg-5 pb-2 pb-sm-3">
+    <h2 class="mb-4 pb-2 text-center text-light">Our partners</h2>
+    <ngx-slick-carousel class="carousel" [config]="partners">
+      @for(data of partnersData;track $index){
+      <div class="swiper-slide" ngxSlickItem>
+        <div>
+          <a class="opacity-40 opacity-transition" href="javascript:void(0);"><img class="swap-to" src="{{data.image}}" alt="Logo" width="196"></a>
+        </div>
+      </div>
+      }
+    </ngx-slick-carousel>
+  </section>
+
+  <!-- FAQ-->
+  <section class="container mb-5 pb-2 pb-lg-5">
+    <div class="row">
+      <div class="col-lg-5 col-md-6">
+        <div class="d-flex flex-column text-md-start text-center">
+          <div class="order-md-1 order-2 mx-md-0 mx-auto mb-md-5 mb-4" style="max-width: 416px;">
+            <h2 class="mb-md-3 mb-2 text-light">FAQs</h2>
+            <p class="mb-4 pb-md-2 text-light opacity-70">Have you any questions about an buying or selling car? Check
+              out Help Center for all the details.</p><a class="btn btn-primary w-sm-auto w-100" routerLink="/pages/help-center">Help center<i class="fi-chevron-right ms-2"></i></a>
+          </div>
+          <div class="order-md-2 order-1"><img src="assets/img/car-finder/about/03.png" alt="FAQs"></div>
+        </div>
+      </div>
+      <!-- Accordion-->
+      <div class="col-md-6 offset-lg-1">
+        <div class="accordion-light">
+          <div ngbAccordion #acc="ngbAccordion" activeIds="static-1" [closeOthers]="true">
+            <div ngbAccordionItem id="static-1">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-1" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                <button ngbAccordionButton> How much does it cost to sell a car on Finder?</button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Eum, quaerat. Corporis pariatur cum dolorem ullam
+                      at nulla ex doloribus, ratione quos repellendus aliquid aspernatur obcaecati adipisci maxime id, sed
+                      cupiditate.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-2">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-2" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                <button ngbAccordionButton> How do I take the best pictures of my car?</button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Eros aliquam egestas eu sit faucibus facilisi
+                      urna, senectus id. Morbi pellentesque at molestie et. Et molestie nunc massa, donec eget viverra.
+                      Sodales nisl vitae gravida pretium enim cursus pharetra massa nisl. Auctor porta dolor nulla elementum
+                      malesuada ut etiam neque, enim.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-3">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-3" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                <button ngbAccordionButton> Can I sell a vehicle if I live outside of the United States? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Libero ut accusantium ea a ipsa, aliquam nemo
+                      aperiam porro deserunt aspernatur sequi amet voluptatibus, fugiat nobis. Atque voluptatibus quibusdam
+                      placeat voluptas.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-4">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-4" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                <button ngbAccordionButton> How does the buyer get in contact with me and make payment? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Numquam eaque rerum repellat nisi? Sint, dolorum
+                      consequuntur! Provident, voluptate maiores dolorum similique ipsam asperiores quos assumenda hic ad
+                      omnis cumque nesciunt.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-5">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-5" data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                <button ngbAccordionButton> Who writes the listing description for my car? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Harum temporibus perferendis quam quae, delectus,
+                      nulla maiores reiciendis, suscipit obcaecati iure odit illo ea vero. Eveniet minima inventore ratione
+                      et voluptatum. Sunt non quod culpa perferendis animi rerum dolorum, perspiciatis aliquam?</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-6">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-6" data-bs-toggle="collapse" data-bs-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                <button ngbAccordionButton> Are there rules to follow in the comments? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Fugit facilis tempore consequatur molestiae
+                      sapiente. Sit veritatis itaque temporibus illo nisi, in soluta corporis commodi nobis reiciendis
+                      laudantium hic facere nostrum provident voluptas perspiciatis, debitis ipsa accusamus aliquid quam
+                      iure tempore magni, ratione dignissimos. Minima, a.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-7">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-7" data-bs-toggle="collapse" data-bs-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
+                <button ngbAccordionButton>  What currency does Finder use? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Soluta ea deleniti eaque iusto officiis, at a
+                      molestiae ipsum qui pariatur quam, eum consectetur quaerat. Tempora et aut dolorum. Mollitia natus
+                      neque veniam consectetur magni asperiores?</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div ngbAccordionItem id="static-7">
+              <h2 ngbAccordionHeader class="accordion-header" id="heading-8" data-bs-toggle="collapse" data-bs-target="#collapse-8" aria-expanded="false" aria-controls="collapse-8">
+                <button ngbAccordionButton> How do I contact a seller privately? </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  <ng-template>
+                    <div class="accordion-body text-light opacity-70 p-0">Sint labore eaque ad, nostrum quod omnis natus?
+                      Consectetur beatae ratione, voluptatem atque iste, fuga ullam nisi soluta dolorem assumenda excepturi!
+                      Repellendus, similique atque ratione accusantium fugiat quidem eum quia quam, nulla eaque
+                      necessitatibus vitae. Doloremque recusandae aperiam dicta odio modi in fuga iure, itaque quos
+                      excepturi.</div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest news (Blog)-->
+  <section class="container pb-4 pb-sm-5 mb-2 mb-md-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-3 mb-sm-4 pb-sm-2">
+      <h2 class="h3 text-light mb-2 mb-sm-0">Latest news</h2><a class="btn btn-link btn-light fw-normal px-0" routerLink="/pages/blog-grid">Go to blog<i class="fi-arrow-long-right fs-sm mt-0 ps-1 ms-2"></i></a>
+    </div>
+    <div class="tns-carousel-wrapper tns-nav-outside tns-carousel-light">
+      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-4 g-3 mx-0 py-3">
+        @for(data of newsData;track $index){
+        <div class="col">
+          <article><a class="d-block rounded-3 overflow-hidden" routerLink="/pages/single-blog"><img class="d-block" src="{{data.image}}" alt="Image"></a>
+            <div class="py-3"><a class="fs-xs text-uppercase text-decoration-none" href="javascript:void(0);">{{data.sub_title}}</a>
+              <h3 class="text-light fs-base pt-1"><a class="nav-link" routerLink="/pages/single-blog">{{data.title}}</a>
+              </h3><a class="d-flex align-items-center text-decoration-none" href="javascript:void(0);"><img class="rounded-circle" src="{{data.profile}}" width="44" alt="Avatar">
+                <div class="ps-2">
+                  <h6 class="fs-sm text-light lh-base mb-1">{{data.name}}</h6>
+                  <div class="d-flex fs-xs text-light opacity-60"><span class="me-2 pe-1"><i class="fi-calendar-alt me-1"></i>{{data.date}}</span><span><i class="fi-chat-circle me-1"></i>{{data.comments}} comments</span></div>
+                </div>
+              </a>
+            </div>
+          </article>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+</main>
+<!-- Footer-->
+<app-footer></app-footer>
